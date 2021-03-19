@@ -12,3 +12,5 @@ getGithub() {
 getRole() {
     return "Engineer";
 }};
+
+module.export = Engineer;

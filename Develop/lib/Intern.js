@@ -13,3 +13,5 @@ getSchool() {
 getRole() {
  return "Intern";
 }};
+
+module.export = Intern;

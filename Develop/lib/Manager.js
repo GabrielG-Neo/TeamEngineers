@@ -14,3 +14,5 @@ getOfficeNumber() {
 getRole() {
  return "Manager";
 }};
+
+module.export = Manager;

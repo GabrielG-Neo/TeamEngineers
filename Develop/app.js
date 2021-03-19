@@ -57,13 +57,14 @@ const employeeQuestions = [
 ]
 
 function createTeamList() {
-    inquire.prompt(employeeQuestions).then(employeeInfo => {
+    inquirer.prompt(employeeQuestions).then(employeeInfo => {
         if (employeeInfo.role === "engineer") {
             var newMember = new Engineer(employeeInfo.id, employeeInfo.email, employeeInfo.name, employeeInfo.github);
         }
         if (employeeInfo.role === "manager") {
             var newMember = new Manager(employeeInfo.id, employeeInfo.email, employeeInfo.name, employeeInfo.officeNumber);
-        } else {
+        } 
+        else {
             var newMember = new Intern(employeeInfo.id, employeeInfo.email, employeeInfo.name, employeeInfo.school);
         }
         teamList.push(newMember);
@@ -78,17 +79,8 @@ function createTeamList() {
 
 function HtmlPage() {
     let newFile = fs.readFileSync("./templates/main.html")
-    fs.writeFileSync("./output/teamPage.html", newFile, function (err) {
+    fs.writeFileSync("./outputPath/team.html", newFile, function (err) {
         if (err) throw err;
     })
-
-    for (member of teamList) {
-        if (member.getRole() == "Manager") {
-            HtmlCard("manager", member.getName(), member.getId(), member.getEmail(), "Office: " + member.getOfficeNumber());
-        } else if (member.getRole() == "Engineer") {
-            HtmlCard("engineer", member.getName(), member.getId(), member.getEmail(), "Github: " + member.getGithub());
-        } else if (member.getRole() == "Intern") {
-            HtmlCard("intern", member.getName(), member.getId(), member.getEmail(), "School: " + member.getSchool());
-        }
-    }
 }
+render();
